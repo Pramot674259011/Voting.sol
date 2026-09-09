@@ -1,0 +1,305 @@
+/* กำหนดให้ขนาดของ Element รวม padding และ border */
+* {
+  box-sizing: border-box;
+}
+
+/* หน้าเว็บไซต์ */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto,
+    sans-serif;
+  color: #f1f5f9;
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(56, 189, 248, 0.35),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(129, 140, 248, 0.35),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 20% 92%,
+      rgba(244, 114, 182, 0.22),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 82% 88%,
+      rgba(45, 212, 191, 0.25),
+      transparent 42%
+    ),
+    linear-gradient(135deg, #0f172a, #1e1b4b 55%, #312e81);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* กล่องหลักของเว็บไซต์ */
+.container {
+  width: min(900px, 92%);
+  margin: 40px auto;
+}
+
+/* ส่วนหัว */
+.header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.header h1 {
+  margin-bottom: 8px;
+  color: #f8fafc;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 24px rgba(129, 140, 248, 0.45);
+}
+
+.header p {
+  color: #a5b4fc;
+}
+
+/* กล่องกระจก: ใช้ร่วมกันทุกส่วนเนื้อหา */
+.wallet-card,
+.admin-card,
+.voting-card,
+.message-card {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+    0 20px 45px rgba(8, 11, 28, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+
+/* เส้นแสงสะท้อนบนขอบบนของกระจก */
+.wallet-card::before,
+.admin-card::before,
+.voting-card::before,
+.message-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 6%;
+  right: 6%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+}
+
+.admin-card h2,
+.voting-card h2 {
+  margin-top: 0;
+  color: #f8fafc;
+  font-size: 1.15rem;
+}
+
+/* ส่วนแสดงข้อมูล Wallet */
+.wallet-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wallet-row strong {
+  color: #cbd5f5;
+  font-weight: 600;
+}
+
+.wallet-address {
+  color: #a5b4fc;
+  overflow-wrap: anywhere;
+}
+
+/* ป้ายแสดงสถานะ */
+.status {
+  display: inline-block;
+  padding: 8px 16px;
+  color: #e0e7ff;
+  font-weight: 600;
+  background: rgba(129, 140, 248, 0.22);
+  border: 1px solid rgba(165, 180, 252, 0.4);
+  border-radius: 999px;
+}
+
+/* Grid สำหรับแสดงรายชื่อผู้สมัคร */
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* การ์ดผู้สมัคร */
+.candidate {
+  position: relative;
+  padding: 22px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.candidate:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  background: rgba(56, 189, 248, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(56, 189, 248, 0.18);
+}
+
+/* ชื่อผู้สมัคร */
+.candidate-name {
+  margin: 0 0 16px;
+  color: #f8fafc;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* คะแนนที่ได้รับ */
+.vote-result {
+  margin: 12px 0;
+  color: #7dd3fc;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+/* ปุ่มทั่วไป */
+button {
+  padding: 12px 20px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow:
+    0 10px 24px rgba(56, 189, 248, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(56, 189, 248, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* ปุ่มที่ไม่สามารถกดได้ */
+button:disabled {
+  background: rgba(148, 163, 184, 0.25);
+  color: rgba(226, 232, 240, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+/* ปุ่มปิดการลงคะแนน */
+.danger {
+  background: linear-gradient(135deg, #fb7185, #f43f5e);
+  box-shadow:
+    0 10px 24px rgba(244, 63, 94, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.danger:hover {
+  filter: brightness(1.08);
+  box-shadow:
+    0 14px 30px rgba(244, 63, 94, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* กลุ่มปุ่มของผู้ดูแล */
+.admin-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ข้อความแจ้งสถานะ */
+.message {
+  margin: 0;
+  color: #cbd5f5;
+  line-height: 1.6;
+}
+
+/* ข้อความสำเร็จ */
+.success {
+  color: #6ee7b7;
+}
+
+/* ข้อความผิดพลาด */
+.error {
+  color: #fca5a5;
+}
+
+/* ซ่อน Element */
+.hidden {
+  display: none;
+}
+
+/* ปรับการแสดงผลสำหรับโทรศัพท์มือถือ */
+@media (max-width: 600px) {
+  .container {
+    width: 94%;
+    margin: 20px auto;
+  }
+
+  .wallet-card,
+  .admin-card,
+  .voting-card,
+  .message-card {
+    padding: 20px;
+  }
+
+  .wallet-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .wallet-row button {
+    width: 100%;
+  }
+
+  .admin-buttons {
+    flex-direction: column;
+  }
+
+  .admin-buttons button {
+    width: 100%;
+  }
+
+  .candidate-grid {
+    grid-template-columns: 1fr;
+  }
+}
